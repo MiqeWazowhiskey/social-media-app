@@ -1,10 +1,12 @@
 import React from 'react'
-
+import Header from '../Header'
 const Layout = ({children,className}) => {
   return (
-    <div className={`w-full min-h-screen justify-center flex flex-col p-5 gap-y-10 bg-[#0F172A] ${className}`}>
+    <>
+    <div className={`w-full min-h-screen items-center flex flex-col gap-y-10 bg-[#0F172A] ${className}`}>
+        <Header/>
         {children}
-    </div>
+    </div></>
   )
 }
 

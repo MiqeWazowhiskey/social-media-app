@@ -1,5 +1,7 @@
 import Layout from "./Layout";
+import Header from "./Header";
 
 export {
-    Layout
+    Layout,
+    Header
 }

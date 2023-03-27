@@ -33,7 +33,7 @@ const Home = () => {
           </div>
         )
       })}
-      <button className='text-8xl w-[96px] h-[96px] flex items-center justify-center font-bold text-white rounded-full fixed right-10 bottom-10 bg-[#0EA5E9] border-2 border-white'>
+    <button className='lg:text-8xl lg:w-[84px] lg:h-[84px] w-[64px] h-[64px] text-7xl flex items-center justify-center font-bold text-white rounded-full fixed right-10 bottom-10 bg-[#0EA5E9] border-4 border-white'>
         <Link to='/createPost'>
           <div className='w-fit h-fit pb-5'>+</div>
         </Link>

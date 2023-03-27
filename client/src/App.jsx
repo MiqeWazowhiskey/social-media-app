@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import './App.css'
-import { Home, CreatePost } from './Pages'
+import { Home, CreatePost, PostPage } from './Pages'
 import { Routes, Route } from 'react-router-dom'
 function App() {
   
@@ -9,7 +7,7 @@ function App() {
     <Routes>
         <Route path='/' exact element={<Home/>}/>
         <Route path='/createPost' exact element={<CreatePost/>}/>
-
+        <Route path='/posts/id/:id' exact element={<PostPage/>}/>
     </Routes>
   )
 }

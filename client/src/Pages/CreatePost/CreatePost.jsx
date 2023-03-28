@@ -28,6 +28,7 @@ const CreatePost = () => {
 
   return (
     <Layout className='flex items-center'>
+      <p className='text-white text-xl text-center'>Please login to post</p>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
           <Form className='lg:w-1/2 h-fit bg-white p-5 flex flex-col gap-y-15 items-center rounded-md'>
 

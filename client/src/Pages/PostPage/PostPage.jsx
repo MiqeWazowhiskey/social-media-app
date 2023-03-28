@@ -5,11 +5,13 @@ import {TfiBackLeft as Back } from 'react-icons/tfi'
 import {RiSendPlaneLine as Send} from 'react-icons/ri'
 import { Layout } from '../../components'
 import { Context } from '../../context/Context'
+import {AiTwotoneDelete as Delete } from 'react-icons/ai'
 const PostPage = () => {
-    const{username}= useContext(Context)
+    const{authState}= useContext(Context)
     const[post,setPost]=useState({})
     const[comments,setComments]=useState([])
     const[commentText,setCommentText]=useState('')
+
     const { id } = useParams()
     useEffect(()=>{
         axios.get(`http://localhost:3001/posts/id/${id}`).then((res)=>{
@@ -21,12 +23,21 @@ const PostPage = () => {
         })
         
     },[])
-
+    const deleteComment = (id) => {
+        axios.delete(`http://localhost:3001/comments/${id}`,{
+            headers:{
+                accessToken: sessionStorage.getItem('accessToken')
+            }
+        }).then((res)=>{
+            setComments(comments.filter((v)=>{return v.id != id}))
+        })
+    }
     const postComment = () => {
         axios.post('http://localhost:3001/comments', {
             text: commentText,
-            username:username,
-            PostId:id
+            username:authState.username,
+            PostId:id,
+            userId: authState.id
         },
         {
             headers:{
@@ -81,13 +92,28 @@ const PostPage = () => {
                     {comments.map((v,i)=>{
                         return(
                             <div key={i} className=' border p-5 rounded-md'>
+                                
                                 <div className='text-lg w-full text-white text-start'>
                                     {v.text}
                                 </div>
+
+                                {
+                                authState.id == v.userId &&
+                                <div  className='w-full flex justify-end items-end h-full mb-5'>
+                                    <button onClick={()=>deleteComment(v.id)}>
+                                        <span className='text-gray-500'>
+                                            <Delete/>
+                                        </span>
+                                    </button>
+                                </div>
+                                }
+
                                 <div className='text-sm w-full text-end text-[#0EA5E9]'>
                                     {v.username}
+                                    
                                 </div>
-
+                                
+                                
                                 
                             </div>
                         )

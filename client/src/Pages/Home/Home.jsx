@@ -11,7 +11,7 @@ const Home = () => {
     const Navigate = useNavigate();
     const [data, setData] = useState([])
   useEffect(()=>{
-    axios.get('http://localhost:3001/posts').then((res)=>{
+    axios.get('http://post-it-api.herokuapp.com/posts').then((res)=>{
       setData(res.data)
     })
   },[])

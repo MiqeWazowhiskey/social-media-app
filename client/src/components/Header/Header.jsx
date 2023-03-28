@@ -6,7 +6,7 @@ const Header = () => {
   const{authState,setAuthState}= useContext(Context)
 
   useEffect(()=>{
-    axios.get('http://localhost:3001/userAuth/getAuth',{
+    axios.get('http://post-it-api.herokuapp.com/userAuth/getAuth',{
       
       headers:{
         accessToken: sessionStorage.getItem('accessToken')

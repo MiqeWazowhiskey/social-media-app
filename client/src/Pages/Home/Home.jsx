@@ -30,7 +30,6 @@ const Home = () => {
             
             <div className='text-sm text-end bg-[#FFFFFF]'>
               {val.username}
-              
             </div>
 
           </motion.a>

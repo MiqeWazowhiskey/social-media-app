@@ -1,5 +1,5 @@
 import './App.css'
-import { Home, CreatePost, PostPage } from './Pages'
+import { Home, CreatePost, PostPage, Register, Login } from './Pages'
 import { Routes, Route } from 'react-router-dom'
 function App() {
   
@@ -8,6 +8,8 @@ function App() {
         <Route path='/' exact element={<Home/>}/>
         <Route path='/createPost' exact element={<CreatePost/>}/>
         <Route path='/posts/id/:id' exact element={<PostPage/>}/>
+        <Route path='/register' exact element={<Register/>}/>
+        <Route path='/login' exact element={<Login/>}/>
     </Routes>
   )
 }

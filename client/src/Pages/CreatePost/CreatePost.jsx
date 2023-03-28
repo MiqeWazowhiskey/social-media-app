@@ -1,17 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
 import { Layout } from '../../components'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Context } from '../../context/Context'
+import { useNavigate, Link } from 'react-router-dom'
 
 const CreatePost = () => {
+  const{username}= useContext(Context)
   const Navigate = useNavigate();
   const initialValues = {
     title: "",
     text:"",
-    username:""
+    username: username
   }
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('Type something nice'),
@@ -28,12 +29,6 @@ const CreatePost = () => {
     <Layout className='flex items-center'>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
           <Form className='lg:w-1/2 h-fit bg-white p-5 flex flex-col gap-y-15 items-center rounded-md'>
-
-            <div className='w-full flex flex-col'>
-              <ErrorMessage className='text-red-600' component='span' name='username'/>
-              <label className='text-[#0EA5E9]'>Username:</label>
-              <Field autoComplete='off' name='username' className='w-full border-[#0EA5E9] border-4 focus:outline-none p-2' type='text'/>
-            </div>
 
             <div className='w-full flex flex-col'>
               <ErrorMessage className='text-red-600' component='span' name='title'/>

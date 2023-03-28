@@ -17,7 +17,7 @@
     "username": "bd7150a71539b6",
     "password": "34cef7eb",
     "database": "heroku_f14f2f220a0bffe",
-    "host": "@eu-cdbr-west-03.cleardb.net",
+    "host": "eu-cdbr-west-03.cleardb.net",
     "dialect": "mysql"
   }
 }

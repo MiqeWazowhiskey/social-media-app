@@ -16,5 +16,14 @@ module.exports = (Sequelize,DataTypes) => {
         }
         
     })
+    //you need to write this function before create Comments table
+    Posts.associate = (models)=>{
+        //each post has many comment
+        Posts.hasMany(models.Comments, {
+            //delete all the comments when the post deleted
+            onDelete:'cascade',
+
+        })
+    }
     return Posts
 }

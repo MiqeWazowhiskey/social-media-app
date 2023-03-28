@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
-
+require('dotenv').config();
 //use
 app.use(express.json());
 app.use(cors());
@@ -22,7 +22,7 @@ app.use('/userAuth', usersRouter);
 
 // code to sql to db
 db.sequelize.sync().then(()=>{
-    app.listen(3001,()=>{
+    app.listen(process.env.PORT || 3001,()=>{
         console.log('server is running on 3001 port...');
     })
 })

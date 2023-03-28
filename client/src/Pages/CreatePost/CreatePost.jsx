@@ -40,7 +40,7 @@ const CreatePost = () => {
 
             <div className='h-full w-full flex flex-col'>
               <ErrorMessage className='text-red-600' component='span' name='text'/>
-              <Field name='text' className='w-full h-[128px] border-[#0EA5E9] border-4 focus:outline-none p-2 mt-5' type='text' placeholder='Type...'/>
+              <Field autoComplete='off' name='text' className='w-full h-[128px] border-[#0EA5E9] border-4 focus:outline-none p-2 mt-5' type='text' placeholder='Type...'/>
             </div>
             <div className='w-full flex justify-center'>
               <button type='submit' className='bg-[#0EA5E9] w-1/5 h-fit p-5 m-5 rounded-md text-white font-bold '>

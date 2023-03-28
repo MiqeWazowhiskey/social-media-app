@@ -33,11 +33,14 @@ const PostPage = () => {
                 accessToken: sessionStorage.getItem('accessToken')
             }
         }).then((response)=>{
-            if(!response.data.error){
-                const add = {text:commentText, username: response.username}
+            if(response.data.error){
+                alert(response.data.error)
+            }
+            else{
+                const add = {text:commentText, username: response.data.username}
                 setComments([...comments,add])
                 setCommentText('')
-            } 
+            }
             
         })
     }

@@ -8,7 +8,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Layout } from '../../components'
 import { Context } from '../../context/Context'
 const Register = () => {
-    const {setUsername} = useContext(Context)
+    const {setAuthState,authState} = useContext(Context)
     const Navigate = useNavigate();
     const initialValues = {
         username:'',
@@ -21,8 +21,18 @@ const Register = () => {
     const onSubmit = (data) => {
         axios.post('http://localhost:3001/userAuth', data).then(()=>{
             axios.post('http://localhost:3001/userAuth/login',data).then((res)=>{
-            setUsername(data.username)
-            Navigate('/')
+                if(res.data.error){
+                    alert(res.data.error)
+                }
+                else{
+                    sessionStorage.setItem('accessToken',res.data)
+                    setAuthState({
+                        username: res.data.username,
+                        id: res.data.id,
+                        status:true
+                    })
+                    Navigate('/')
+                }
             })
           })
     }

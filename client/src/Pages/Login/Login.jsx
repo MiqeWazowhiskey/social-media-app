@@ -9,7 +9,7 @@ import {TfiBackLeft as Back } from 'react-icons/tfi'
 
 
 const Login = () => {
-    const{username,setUsername}=useContext(Context)
+    const{authState,setAuthState}=useContext(Context)
     const Navigate= useNavigate();
     const onSubmit = (data) => {
         axios.post('http://localhost:3001/userAuth/login',data).then((res)=>{
@@ -18,7 +18,11 @@ const Login = () => {
             }
             else{
                 sessionStorage.setItem('accessToken',res.data)
-                setUsername(data.username)
+                setAuthState({
+                    username: res.data.username,
+                    id: res.data.id,
+                    status:true
+                })
                 Navigate('/')
             }
             

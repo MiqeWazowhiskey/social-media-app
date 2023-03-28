@@ -43,10 +43,10 @@ const CreatePost = () => {
               <Field autoComplete='off' name='text' className='w-full h-[128px] border-[#0EA5E9] border-4 focus:outline-none p-2 mt-5' type='text' placeholder='Type...'/>
             </div>
             <div className='w-full flex justify-center'>
-              <button type='submit' className='bg-[#0EA5E9] w-1/5 h-fit p-5 m-5 rounded-md text-white font-bold '>
+              <button type='submit' className='bg-[#0EA5E9] w-28 lg:w-1/5 h-fit p-5 m-5 rounded-md text-white font-bold '>
                 <span>Post</span>
               </button>
-              <Link to='/' className='bg-red-500 w-1/5 h-fit p-5 m-5 rounded-md text-white text-center font-bold '>
+              <Link to='/' className='bg-red-500 w-28 lg:w-1/5 h-fit p-5 m-5 rounded-md text-white text-center font-bold '>
                 <span>Cancel</span>
               </Link>
             </div>

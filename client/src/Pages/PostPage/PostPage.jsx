@@ -1,10 +1,12 @@
-import React , { useEffect, useState } from 'react'
+import React , { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import {TfiBackLeft as Back } from 'react-icons/tfi'
 import {RiSendPlaneLine as Send} from 'react-icons/ri'
 import { Layout } from '../../components'
+import { Context } from '../../context/Context'
 const PostPage = () => {
+    const{username}= useContext(Context)
     const[post,setPost]=useState({})
     const[comments,setComments]=useState([])
     const[commentText,setCommentText]=useState('')
@@ -23,10 +25,20 @@ const PostPage = () => {
     const postComment = () => {
         axios.post('http://localhost:3001/comments', {
             text: commentText,
+            username:username,
             PostId:id
+        },
+        {
+            headers:{
+                accessToken: sessionStorage.getItem('accessToken')
+            }
         }).then((response)=>{
-            const add = {text:commentText, username: response.username}
-            setComments([...comments,add])
+            if(!response.data.error){
+                const add = {text:commentText, username: response.username}
+                setComments([...comments,add])
+                setCommentText('')
+            } 
+            
         })
     }
   return (
@@ -44,7 +56,6 @@ const PostPage = () => {
                         
                         <div className='text-sm text-end bg-[#FFFFFF]'>
                         {post.username}
-                        
                         </div>
                         
                     </div>
@@ -70,7 +81,7 @@ const PostPage = () => {
                                 <div className='text-lg w-full text-white text-start'>
                                     {v.text}
                                 </div>
-                                <div className='text-sm w-full text-end text-[#3A506B]'>
+                                <div className='text-sm w-full text-end text-[#0EA5E9]'>
                                     {v.username}
                                 </div>
 

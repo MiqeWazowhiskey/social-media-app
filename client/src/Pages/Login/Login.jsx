@@ -1,10 +1,11 @@
 import React, { useContext,useState } from 'react'
 import axios from 'axios'
 import { Formik, Form, ErrorMessage, Field } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Context } from '../../context/Context'
 import { Layout } from '../../components'
 import * as Yup from 'yup'
+import {TfiBackLeft as Back } from 'react-icons/tfi'
 
 
 const Login = () => {
@@ -12,8 +13,15 @@ const Login = () => {
     const Navigate= useNavigate();
     const onSubmit = (data) => {
         axios.post('http://localhost:3001/userAuth/login',data).then((res)=>{
-            setUsername(data.username)
-            Navigate('/')
+            if(res.data.error){
+                alert(res.data.error)
+            }
+            else{
+                sessionStorage.setItem('accessToken',res.data)
+                setUsername(data.username)
+                Navigate('/')
+            }
+            
         })
     }
     const initialValues = {
@@ -44,6 +52,9 @@ const Login = () => {
                 </div>
             </Form>
         </Formik>
+        <Link to='/' className='text-3xl lg:text-6xl fixed right-5 bottom-5 text-white hover:text-[#0EA5E9]'>
+            <Back/>
+        </Link>
     </Layout>
   )
 }

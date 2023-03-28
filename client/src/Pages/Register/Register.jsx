@@ -3,7 +3,8 @@ import React, { useContext } from 'react'
 import { Formik, Form, ErrorMessage, Field } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import {TfiBackLeft as Back } from 'react-icons/tfi'
+import { useNavigate, Link } from 'react-router-dom'
 import { Layout } from '../../components'
 import { Context } from '../../context/Context'
 const Register = () => {
@@ -52,7 +53,9 @@ const Register = () => {
 
             </Form>
         </Formik>
-        
+        <Link to='/' className='text-3xl lg:text-6xl fixed right-5 bottom-5 text-white hover:text-[#0EA5E9]'>
+            <Back/>
+        </Link>
     </Layout>
   )
 }

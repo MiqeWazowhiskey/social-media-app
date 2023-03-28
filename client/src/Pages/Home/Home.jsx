@@ -5,6 +5,8 @@ import { Layout } from '../../components'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import {AiTwotoneDelete as Delete } from 'react-icons/ai'
+
 const Home = () => {
     const Navigate = useNavigate();
     const [data, setData] = useState([])
@@ -18,8 +20,9 @@ const Home = () => {
     <Layout className="w-full items-center min-h-screen text-black">
       {data.map((val,i)=>{
         return(
-          <motion.a onClick={()=>{Navigate(`/posts/id/${val.id}`)}} key={i} className='w-1/2 h-fit rounded-md border-4 border-white hover:outline-none hover:cursor-pointer' whileHover={{scale: 1.03}}>
           
+          <motion.a onClick={()=>{Navigate(`/posts/id/${val.id}`)}} key={i} className='w-1/2 h-fit rounded-md border-4 border-white hover:outline-none hover:cursor-pointer' whileHover={{scale: 1.03}}>
+            
             <div className='flex flex-row w-full text-white bg-[#0EA5E9] text-lg  p-5'>
               {val.title}
             </div>
@@ -30,7 +33,11 @@ const Home = () => {
             
             <div className='text-sm text-end bg-[#FFFFFF]'>
               {val.username}
+
+              
+            
             </div>
+            
 
           </motion.a>
         )

@@ -1,6 +1,7 @@
 import './App.css'
 import { Home, CreatePost, PostPage, Register, Login } from './Pages'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+
 function App() {
   
   return (

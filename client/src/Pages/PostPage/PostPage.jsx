@@ -1,5 +1,5 @@
 import React , { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import {TfiBackLeft as Back } from 'react-icons/tfi'
 import {RiSendPlaneLine as Send} from 'react-icons/ri'
@@ -11,6 +11,7 @@ const PostPage = () => {
     const[post,setPost]=useState({})
     const[comments,setComments]=useState([])
     const[commentText,setCommentText]=useState('')
+    const Navigate= useNavigate();
 
     const { id } = useParams()
     useEffect(()=>{
@@ -23,6 +24,18 @@ const PostPage = () => {
         })
         
     },[])
+    //Delete Post
+    const deletePost = () => {
+        axios.delete(`http://localhost:3001/posts/${id}`,{
+            headers:{
+                accessToken: sessionStorage.getItem('accessToken')
+            }
+        }).then((res)=>{
+            Navigate('/')
+        })
+    }
+
+    // Delete comment
     const deleteComment = (id) => {
         axios.delete(`http://localhost:3001/comments/${id}`,{
             headers:{
@@ -32,6 +45,7 @@ const PostPage = () => {
             setComments(comments.filter((v)=>{return v.id != id}))
         })
     }
+
     const postComment = () => {
         axios.post('http://localhost:3001/comments', {
             text: commentText,
@@ -70,6 +84,9 @@ const PostPage = () => {
                         
                         <div className='text-sm text-end bg-[#FFFFFF]'>
                         {post.username}
+                        <button onClick={()=>{deletePost()}} className='font-bold text-xl p-2  text-gray-400 hover:text-red-500'>
+                            <span>x</span>
+                        </button>
                         </div>
                         
                     </div>

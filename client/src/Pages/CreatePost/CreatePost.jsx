@@ -3,24 +3,22 @@ import { Layout } from '../../components'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { Context } from '../../context/Context'
 import { useNavigate, Link } from 'react-router-dom'
 
 const CreatePost = () => {
-  const{username}= useContext(Context)
   const Navigate = useNavigate();
   const initialValues = {
     title: "",
     text:"",
-    username: username
   }
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('Type something nice'),
     text: Yup.string().required('Type something nice'),
-    username: Yup.string().min(2).max(20).required('Username required')
   })
   const onSubmit = (data)=> {
-    axios.post("http://localhost:3001/posts", data ).then(()=>{
+    axios.post("http://localhost:3001/posts", data, {headers:{
+      accessToken: sessionStorage.getItem('accessToken')
+    }}).then(()=>{
       Navigate('/')
     })
   }

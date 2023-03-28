@@ -36,8 +36,23 @@ router.post('/login', async(req,res) => {
     })
 })
 
+//get current auth
 router.get('/getAuth',validateToken, (req,res)=> {
     res.json(req.user)
+})
+
+//get by Id
+router.get('/byId/:id', async (req, res) => {
+    const userId = req.params.id;
+    const userInfo = await Users.findByPk(userId,{attributes:{
+        exclude: ['password']
+    }})
+    if(!userInfo){
+        res.json({error:'User not found...'});
+    }
+    else{
+        res.json(userInfo)
+    }
 })
 
 module.exports = router ;

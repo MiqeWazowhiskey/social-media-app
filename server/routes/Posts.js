@@ -3,6 +3,7 @@ const { validateToken } = require('../middlewares/AuthMiddle');
 const router = express.Router();
 const { Posts } = require('../models')
 
+//get all posts
 router.get("/", async ( req, res )=>{
     try{
         const listPosts = await Posts.findAll()
@@ -13,6 +14,7 @@ router.get("/", async ( req, res )=>{
     }
 })
 
+//get 1 post by ID
 router.get("/id/:id", async (req,res)=>{
     try{
         const id = req.params.id
@@ -24,6 +26,7 @@ router.get("/id/:id", async (req,res)=>{
     }
 })
 
+//post post
 router.post("/",validateToken, async ( req, res )=>{
     const post = req.body
     post.username = req.user.username
@@ -32,7 +35,7 @@ router.post("/",validateToken, async ( req, res )=>{
         res.json(post)
     }
     catch(error){
-        console.log(error)
+        alert(error)
     }
 })
 
@@ -45,6 +48,17 @@ router.delete('/:id', validateToken, async(req,res)=>{
         }
     })
     res.json('Post deleted')
+})
+
+//get user's posts
+router.get('/profile/:id', validateToken, async (req, res)=>{
+    const id = req.params.id
+    const data = await Posts.findAll({where:{UserId:id}})
+    if(!data) res.json('Profile not found')
+    else{
+        res.json(data)
+    }
+    
 })
 
 module.exports = router;

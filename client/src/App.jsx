@@ -1,6 +1,6 @@
 import './App.css'
-import { Home, CreatePost, PostPage, Register, Login } from './Pages'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Home, CreatePost, PostPage, Register, Login, Profile } from './Pages'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   
@@ -11,6 +11,7 @@ function App() {
         <Route path='/posts/id/:id' exact element={<PostPage/>}/>
         <Route path='/register' exact element={<Register/>}/>
         <Route path='/login' exact element={<Login/>}/>
+        <Route path='/profile/:id' exact element={<Profile/>}/>
     </Routes>
   )
 }

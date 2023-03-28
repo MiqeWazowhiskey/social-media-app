@@ -4,8 +4,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+import { Context } from '../../context/Context'
 
 const CreatePost = () => {
+  const {authState}= useContext(Context)
   const Navigate = useNavigate();
   const initialValues = {
     title: "",
@@ -16,6 +18,7 @@ const CreatePost = () => {
     text: Yup.string().required('Type something nice'),
   })
   const onSubmit = (data)=> {
+    data.UserId = authState.id
     axios.post("http://localhost:3001/posts", data, {headers:{
       accessToken: sessionStorage.getItem('accessToken')
     }}).then(()=>{

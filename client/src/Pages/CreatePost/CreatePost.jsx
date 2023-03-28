@@ -19,7 +19,7 @@ const CreatePost = () => {
   })
   const onSubmit = (data)=> {
     data.UserId = authState.id
-    axios.post("http://post-it-api.herokuapp.com/posts", data, {headers:{
+    axios.post("https://post-it-api.herokuapp.com/posts", data, {headers:{
       accessToken: sessionStorage.getItem('accessToken')
     }}).then(()=>{
       Navigate('/')

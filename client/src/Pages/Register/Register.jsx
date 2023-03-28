@@ -19,8 +19,8 @@ const Register = () => {
         password: Yup.string().min(8).max(16).required('Password required...')
     })
     const onSubmit = (data) => {
-        axios.post('http://post-it-api.herokuapp.com/userAuth', data).then(()=>{
-            axios.post('http://post-it-api.herokuapp.com/userAuth/login',data).then((res)=>{
+        axios.post('https://post-it-api.herokuapp.com/userAuth', data).then(()=>{
+            axios.post('https://post-it-api.herokuapp.com/userAuth/login',data).then((res)=>{
                 if(res.data.error){
                     alert(res.data.error)
                 }

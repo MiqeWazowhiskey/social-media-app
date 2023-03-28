@@ -15,10 +15,10 @@ const PostPage = () => {
 
     const { id } = useParams()
     useEffect(()=>{
-        axios.get(`http://post-it-api.herokuapp.com/posts/id/${id}`).then((res)=>{
+        axios.get(`https://post-it-api.herokuapp.com/posts/id/${id}`).then((res)=>{
             setPost(res.data)
         })
-        axios.get(`http://post-it-api.herokuapp.com/comments/comment/${id}`).then((response)=>{
+        axios.get(`https://post-it-api.herokuapp.com/comments/comment/${id}`).then((response)=>{
             setComments(response.data)
             setCommentText("")
         })
@@ -26,7 +26,7 @@ const PostPage = () => {
     },[])
     //Delete Post
     const deletePost = () => {
-        axios.delete(`http://post-it-api.herokuapp.com/posts/${id}`,{
+        axios.delete(`https://post-it-api.herokuapp.com/posts/${id}`,{
             headers:{
                 accessToken: sessionStorage.getItem('accessToken')
             }
@@ -37,7 +37,7 @@ const PostPage = () => {
 
     // Delete comment
     const deleteComment = (id) => {
-        axios.delete(`http://post-it-api.herokuapp.com/comments/${id}`,{
+        axios.delete(`https://post-it-api.herokuapp.com/comments/${id}`,{
             headers:{
                 accessToken: sessionStorage.getItem('accessToken')
             }
@@ -47,7 +47,7 @@ const PostPage = () => {
     }
 
     const postComment = () => {
-        axios.post('http://post-it-api.herokuapp.com/comments', {
+        axios.post('https://post-it-api.herokuapp.com/comments', {
             text: commentText,
             username:authState.username,
             PostId:id,

@@ -12,14 +12,14 @@ const Profile = () => {
     const[userInfo,setUserInfo]= useState()
     const[profileData,setProfileData]= useState([])
     useEffect(()=>{
-        axios.get(`http://post-it-api.herokuapp.com/userAuth/byId/${id}`,{
+        axios.get(`https://post-it-api.herokuapp.com/userAuth/byId/${id}`,{
             headers:{
                 accessToken: sessionStorage.getItem('accessToken')
             }
         }).then((res)=>{
             setUserInfo(res.data)
         })
-        axios.get(`http://post-it-api.herokuapp.com/posts/profile/${id}`,{
+        axios.get(`https://post-it-api.herokuapp.com/posts/profile/${id}`,{
             headers:{
                 accessToken: sessionStorage.getItem('accessToken')
             }

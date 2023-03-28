@@ -12,7 +12,7 @@ const Login = () => {
     const{authState,setAuthState}=useContext(Context)
     const Navigate= useNavigate();
     const onSubmit = (data) => {
-        axios.post('http://post-it-api.herokuapp.com/userAuth/login',data).then((res)=>{
+        axios.post('https://post-it-api.herokuapp.com/userAuth/login',data).then((res)=>{
             if(res.data.error){
                 alert(res.data.error)
             }

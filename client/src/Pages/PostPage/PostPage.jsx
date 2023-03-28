@@ -84,9 +84,9 @@ const PostPage = () => {
                         
                         <div className='text-sm text-end bg-[#FFFFFF]'>
                         <Link to={`/profile/${post.UserId}`} className='hover:text-[#0EA5E9] '>{post.username}</Link>
-                        <button onClick={()=>{deletePost()}} className='font-bold text-xl p-2  text-gray-400 hover:text-red-500'>
+                        {authState.id == post.UserId &&<button onClick={()=>{deletePost()}} className='font-bold text-xl p-2  text-gray-400 hover:text-red-500'>
                             <span>x</span>
-                        </button>
+                        </button>}
                         </div>
                         
                     </div>

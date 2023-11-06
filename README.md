@@ -10,6 +10,3 @@
 
 ## Comment
 ![image](https://user-images.githubusercontent.com/91954535/228380442-98defabc-839a-415c-9939-a03762663e45.png)
-
-## Mobile
-![image](https://user-images.githubusercontent.com/91954535/228380927-cfbed977-164f-4b84-8e9e-27fdc6601d3f.png)
